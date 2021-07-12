@@ -16,6 +16,9 @@ countries_df = (
     .reset_index()
 )
 
+dropdown_options = countries_df.sort_values("Country_Region").reset_index()
+dropdown_options = dropdown_options["Country_Region"]
+
 conditions = ["confirmed", "deaths", "recovered"]
 
 
@@ -28,7 +31,7 @@ def make_df(condition: str, country: str = None):
         .sum()
         .reset_index(name=condition)
     )
-    df = df.rename(columns={"index": "Date"})
+    df = df.rename(columns={"index": "date"})
     return df
 
 
